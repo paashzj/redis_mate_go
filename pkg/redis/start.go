@@ -13,7 +13,7 @@ import (
 func Start() {
 	err := generateRedisConfig()
 	if err != nil {
-		logs.Error("can't start redis")
+		logs.Error("can't start redis ", err)
 	}
 	startRedis()
 }
@@ -42,5 +42,5 @@ func generateRedisConfig() error {
 		return err
 	}
 	err = writer.Flush()
-	return nil
+	return err
 }
