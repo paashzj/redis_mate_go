@@ -22,9 +22,12 @@ func startRedis() {
 	command := exec.Command("/bin/bash", path.RedisStartScript)
 	err := command.Start()
 	if err != nil {
-		logs.Error("start redis server failed")
+		logs.Error("start redis server failed ", err)
 	}
-	command.Wait()
+	err = command.Wait()
+	if err != nil {
+		logs.Error("command wait error ", err)
+	}
 }
 
 func generateRedisConfig() error {
