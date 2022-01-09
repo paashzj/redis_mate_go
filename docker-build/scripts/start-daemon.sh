@@ -1,4 +1,6 @@
 #!/bin/bash
 
 export REMOTE_MODE=false
-nohup $REDIS_HOME/mate/redis_mate >$REDIS_HOME/redis_mate.log 2>$REDIS_HOME/redis_mate_error.log
+mkdir $REDIS_HOME/logs
+nohup $REDIS_HOME/mate/redis_mate >>$REDIS_HOME/logs/redis_mate.stdout.log 2>>$REDIS_HOME/logs/redis_mate.stderr.log
+
