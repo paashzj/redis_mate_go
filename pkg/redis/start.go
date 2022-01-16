@@ -2,7 +2,6 @@ package redis
 
 import (
 	"bufio"
-	"fmt"
 	"github.com/beego/beego/v2/core/logs"
 	"os"
 	"os/exec"
@@ -37,7 +36,11 @@ func generateRedisConfig() error {
 	}
 	defer file.Close()
 	writer := bufio.NewWriter(file)
-	_, err = writer.WriteString(fmt.Sprintf("bind " + config.RedisListenAddr))
+	_, err = writer.WriteString("bind " + config.RedisListenAddr + "\n")
+	if err != nil {
+		return err
+	}
+	_, err = writer.WriteString("protected-mode no")
 	if err != nil {
 		return err
 	}
